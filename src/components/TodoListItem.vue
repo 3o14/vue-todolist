@@ -6,10 +6,21 @@ defineProps({
 });
 
 const store = useCounterStore();
+
+const deleteTodo = (id) => {
+  const userConfirmed = window.confirm("할 일을 삭제할까요?");
+
+  if (userConfirmed) {
+    store.deleteTodo(id);
+    console.log("값이 변경되었습니다.");
+  } else {
+    console.log("값 변경이 취소되었습니다.");
+  }
+};
 </script>
 
 <template>
-  <div class="todoItem">
+  <div class="todoItem" @contextmenu.prevent="deleteTodo(todo.id)">
     <span :class="{ 'is-done': todo.isDone }">{{ todo.text }}</span>
     <div
       id="btn"

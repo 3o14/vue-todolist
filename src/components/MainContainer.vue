@@ -5,16 +5,22 @@ import HeadInfoDiv from "./HeadInfoDiv.vue";
 </script>
 
 <template>
-  <div class="main">
-    <div>
-      <HeadInfoDiv />
-      <TodoList />
+  <div class="outline">
+    <div class="main">
+      <div>
+        <HeadInfoDiv />
+        <TodoList />
+      </div>
+      <TodoForm />
     </div>
-    <TodoForm />
+    <button id="btn">+</button>
   </div>
 </template>
 
 <style scoped>
+.outline {
+  text-align: center;
+}
 .main {
   background-color: white;
   min-height: 70vh;
@@ -25,5 +31,17 @@ import HeadInfoDiv from "./HeadInfoDiv.vue";
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+#btn {
+  color: white;
+  background-color: #4edda1;
+  width: 4rem;
+  height: 4rem;
+  font-size: 3rem;
+  line-height: 4.5rem;
+  border-radius: 40rem;
+  position: relative;
+  bottom: 2rem;
 }
 </style>
