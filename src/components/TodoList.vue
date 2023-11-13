@@ -15,5 +15,6 @@ const store = useCounterStore();
 .list {
   max-height: 77%;
   overflow: auto;
+  padding: 0.5rem;
 }
 </style>

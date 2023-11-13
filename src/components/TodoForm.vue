@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onUpdated } from "vue";
+import { ref } from "vue";
 import { useCounterStore } from "@/stores/counter";
 
 const store = useCounterStore();
@@ -9,15 +9,18 @@ const formElem = ref(null);
 const createTodo = (todoText) => {
   store.addTodo(todoText);
   formElem.value.reset();
-  todoText.value = "";
+  // todoText.value = "";
 };
 
-const emit = defineEmits(["input"]);
+defineProps({
+  reset: Function,
+});
+const emit = defineEmits(["input", "reset"]);
 
 const updateParent = () => {
   emit("input", todoText);
+  emit("reset", todoText);
 };
-
 </script>
 
 <template>

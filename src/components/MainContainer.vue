@@ -14,7 +14,13 @@ const clickPlus = () => {
 const handleInput = (value) => {
   console.log(value._value);
   todo.value = value._value;
+  // reset props 전달
   return value._value;
+};
+
+const resetInput = (text) => {
+  console.log("resetInput: ", text);
+  return text ? "" : "";
 };
 </script>
 
@@ -25,7 +31,7 @@ const handleInput = (value) => {
         <HeadInfoDiv />
         <TodoList />
       </div>
-      <TodoForm @input="handleInput" />
+      <TodoForm @input="handleInput" @reset="resetInput" />
     </div>
     <button @click="clickPlus" id="btn">+</button>
   </div>

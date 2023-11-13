@@ -11,7 +11,7 @@ export const useCounterStore = defineStore(
       todos.value.push({
         id: id++,
         text: todoText,
-        idDone: false,
+        isDone: false,
       });
     };
 

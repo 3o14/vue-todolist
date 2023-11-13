@@ -68,6 +68,7 @@ var dateInfo = {
 .done-area {
   font-size: 1.5rem;
   color: #4edda1;
+  font-weight: 700;
 }
 
 .right-side {

@@ -20,19 +20,18 @@ const deleteTodo = (id) => {
 
 const checked = ref(false);
 const done = () => {
-  alert("hel");
   checked.value = props.todo.isDone;
 };
 </script>
 
 <template>
-  <div class="todoItem" @contextmenu.prevent="deleteTodo(todo.id)">
+  <div
+    class="todoItem"
+    @contextmenu.prevent="deleteTodo(todo.id)"
+    @click="[store.updateTodo(todo.id), done()]"
+  >
     <span :class="{ 'is-done': todo.isDone }">{{ todo.text }}</span>
-    <div
-      id="btn"
-      :class="{ 'is-done-check': checked }"
-      @click="[store.updateTodo(todo.id), done()]"
-    ></div>
+    <div :class="{ btn: true, 'is-done-check': todo.isDone }"></div>
   </div>
 </template>
 
@@ -41,21 +40,20 @@ const done = () => {
   color: #dcdde3;
 }
 
-.is-done-check {
-  border: 0.2rem solid #4edda1;
-}
-
 .todoItem {
   margin-bottom: 1.5rem;
   display: flex;
   justify-content: space-between;
 }
 
-#btn {
+.btn {
   width: 1rem;
   height: 1rem;
   background-color: none;
   border: 0.2rem solid #dcdde3;
   border-radius: 40rem;
+}
+.is-done-check {
+  border: 0.2rem solid #4edda1;
 }
 </style>
