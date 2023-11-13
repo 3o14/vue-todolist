@@ -1,7 +1,7 @@
 <script setup>
 import { useCounterStore } from "@/stores/counter";
-
-defineProps({
+import { ref } from "vue";
+const props = defineProps({
   todo: Object,
 });
 
@@ -17,6 +17,12 @@ const deleteTodo = (id) => {
     console.log("값 변경이 취소되었습니다.");
   }
 };
+
+const checked = ref(false);
+const done = () => {
+  alert("hel");
+  checked.value = props.todo.isDone;
+};
 </script>
 
 <template>
@@ -24,8 +30,8 @@ const deleteTodo = (id) => {
     <span :class="{ 'is-done': todo.isDone }">{{ todo.text }}</span>
     <div
       id="btn"
-      :class="{ 'is-done-check': todo.isDone }"
-      @click="store.updateTodo(todo.id)"
+      :class="{ 'is-done-check': checked }"
+      @click="[store.updateTodo(todo.id), done()]"
     ></div>
   </div>
 </template>
@@ -46,8 +52,8 @@ const deleteTodo = (id) => {
 }
 
 #btn {
-  width: 0.7rem;
-  height: 0.7rem;
+  width: 1rem;
+  height: 1rem;
   background-color: none;
   border: 0.2rem solid #dcdde3;
   border-radius: 40rem;

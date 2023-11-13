@@ -6,9 +6,14 @@ const store = useCounterStore();
 </script>
 
 <template>
-  <div>
+  <div class="list">
     <TodoListItem v-for="todo in store.todos" :key="todo.id" :todo="todo" />
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.list {
+  max-height: 77%;
+  overflow: auto;
+}
+</style>

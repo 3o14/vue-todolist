@@ -81,7 +81,7 @@ var dateInfo = {
   display: flex;
   justify-content: space-between;
   height: 1.7rem;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 
 #done {

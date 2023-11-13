@@ -2,45 +2,66 @@
 import TodoForm from "./TodoForm.vue";
 import TodoList from "./TodoList.vue";
 import HeadInfoDiv from "./HeadInfoDiv.vue";
+import { ref } from "vue";
+import { useCounterStore } from "@/stores/counter";
+
+const store = useCounterStore();
+const todo = ref("");
+const clickPlus = () => {
+  store.addTodo(todo.value);
+};
+
+const handleInput = (value) => {
+  console.log(value._value);
+  todo.value = value._value;
+  return value._value;
+};
 </script>
 
 <template>
-  <div class="outline">
+  <div class="layout">
     <div class="main">
-      <div>
+      <div class="content">
         <HeadInfoDiv />
         <TodoList />
       </div>
-      <TodoForm />
+      <TodoForm @input="handleInput" />
     </div>
-    <button id="btn">+</button>
+    <button @click="clickPlus" id="btn">+</button>
   </div>
 </template>
 
 <style scoped>
-.outline {
-  text-align: center;
+.layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .main {
   background-color: white;
-  min-height: 70vh;
+  height: 70vh;
   overflow-y: visible;
   flex-wrap: nowrap;
-  padding: 2rem;
+  padding: 3rem;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
+.content {
+  height: 85%;
+}
+
 #btn {
-  color: white;
-  background-color: #4edda1;
   width: 4rem;
   height: 4rem;
   font-size: 3rem;
-  line-height: 4.5rem;
+  color: white;
+  background-color: #4edda1;
+  border: none;
   border-radius: 40rem;
+  line-height: 4.5rem;
   position: relative;
   bottom: 2rem;
 }

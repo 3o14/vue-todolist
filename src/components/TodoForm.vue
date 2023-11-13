@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onUpdated } from "vue";
 import { useCounterStore } from "@/stores/counter";
 
 const store = useCounterStore();
@@ -11,31 +11,38 @@ const createTodo = (todoText) => {
   formElem.value.reset();
   todoText.value = "";
 };
+
+const emit = defineEmits(["input"]);
+
+const updateParent = () => {
+  emit("input", todoText);
+};
+
 </script>
 
 <template>
-  <div>
-    <form @submit.prevent="createTodo(todoText)" ref="formElem">
+  <form class="form" @submit.prevent="createTodo(todoText)" ref="formElem">
+    <div>
       <input
         placeholder="할 일을 입력하세요"
         id="input"
         type="text"
         required
         v-model="todoText"
+        @input="updateParent"
       />
       <span></span>
-      <!-- <input type="submit" /> -->
-    </form>
-  </div>
+    </div>
+  </form>
 </template>
 
 <style scoped>
-
 div {
   position: relative;
-  width: 300px;
-  margin-left: 50px;
-  margin-top: 100px;
+}
+
+.form {
+  display: flex;
 }
 
 #input {
